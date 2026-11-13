@@ -3,7 +3,14 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 -- Open every tab/pane in WSL Ubuntu (splits keep the current directory)
+-- Picks the first installed Ubuntu distro (e.g. "Ubuntu" or "Ubuntu-24.04")
 config.default_domain = "WSL:Ubuntu"
+for _, dom in ipairs(wezterm.default_wsl_domains()) do
+  if dom.distribution:match("^Ubuntu") then
+    config.default_domain = dom.name
+    break
+  end
+end
 
 -- Look
 config.font = wezterm.font("MesloLGS NF")
