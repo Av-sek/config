@@ -17,7 +17,7 @@ config.font = wezterm.font("MesloLGS NF")
 config.font_size = 11
 config.color_scheme = "Tokyo Night" -- matches LazyVim's default theme
 config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = false
 config.window_padding = { left = 4, right = 4, top = 4, bottom = 0 }
 
 -- tmux-style prefix: Alt+a, then a key (Alt+a twice sends a real Alt+a).
@@ -52,6 +52,16 @@ config.keys = {
   { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
   { key = "w", mods = "LEADER", action = act.ShowTabNavigator },
   { key = "&", mods = "LEADER|SHIFT", action = act.CloseCurrentTab({ confirm = true }) },
+  -- Windows PowerShell tab (native Windows, not inside WSL)
+  {
+    key = "P",
+    mods = "LEADER|SHIFT",
+    action = act.SpawnCommandInNewTab({
+      domain = { DomainName = "local" },
+      args = { "powershell.exe", "-NoLogo" },
+      cwd = "C:\\Users\\Kruton",
+    }),
+  },
   {
     key = ",",
     mods = "LEADER",
