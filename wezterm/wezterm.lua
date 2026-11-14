@@ -59,7 +59,7 @@ config.keys = {
     action = act.SpawnCommandInNewTab({
       domain = { DomainName = "local" },
       args = { "powershell.exe", "-NoLogo" },
-      cwd = "C:\\Users\\Kruton",
+      cwd = wezterm.home_dir, -- current Windows user's home (C:\Users\<you>)
     }),
   },
   {
